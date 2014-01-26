@@ -1,0 +1,38 @@
+<div class="row">
+	<h1>My profile</h1>
+</div>
+<br>
+
+<div class="row">
+	<div class="small-3 columns">
+		Username
+	</div>
+	<div class="small-3 columns">
+		<%= @user.username %>
+	</div>
+	<div class="small-3 columns">
+	</div>
+</div>
+
+<div class="row">
+	<div class="small-3 columns">
+		Email
+	</div>
+	<div class="small-3 columns">
+		<%= @user.email %>
+	</div>
+	<div class="small-3 columns">
+	</div>
+</div>
+
+</br></br>
+
+<div class="row">
+<%= link_to 'Edit Profile', edit_user_path(@user), class: "button" %>
+</div>
+
+</br>
+
+<div class="row">
+<%= link_to 'Back', root_path %>
+</div>

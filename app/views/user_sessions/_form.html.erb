@@ -1,0 +1,41 @@
+<%= form_for(@user_session) do |f| %>
+	<% if @user_session.errors.any? %>
+	<div id="error_explanation" class="row">
+		<h2><%= pluralize(@user_session.errors.count, "error") %> prohibited this action:</h2>
+			<ul>
+				<% @user_session.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+				<% end %>
+			</ul>
+	</div>
+	<% end %>
+
+	<div class="row">
+		<div class="small-3 columns">
+			<%= f.label :username, "Username" %>
+		</div>
+		<div class="small-3 columns">
+			<%= f.text_field :username %>
+		</div>
+		<div class="small-3 columns">
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="small-3 columns">
+			<%= f.label :password, "Password" %>
+		</div>
+		<div class="small-3 columns">
+			<%= f.password_field :password %>
+		</div>
+		<div class="small-3 columns">
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="small-3 columns">
+			<%= f.submit "Login", class: "button radius" %>
+		</div>
+	</div>
+
+	<% end %>

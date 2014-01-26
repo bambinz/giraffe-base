@@ -1,0 +1,31 @@
+Stub rails app used for starting a new project. Skip the setup.
+
+Uses:
+Rails 3.2
+Jruby 1.7.4
+
+Includes:
+
+Basic user registration, login/logout, roles and permissions
+Authlogic
+Declarative authorization
+
+Basic test framework and specs
+factory_girl_rails
+capybara
+guard
+spork
+faker
+included specs to cover existing code
+
+Foundation 5
+All views styled with foundation 5 and includes basic graphics
+
+Other assorted gems:
+better_errors
+chosen
+workflow
+facebox
+will_paginate
+foundation-will_paginate
+wicked

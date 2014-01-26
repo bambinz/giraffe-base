@@ -1,0 +1,60 @@
+<%= form_for(@user) do |f| %>
+	<% if @user.errors.any? %>
+	<div id="error_explanation" class="row">
+		<h2><%= pluralize(@user.errors.count, "error") %> prohibited this action:</h2>
+			<ul>
+				<% @user.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+				<% end %>
+			</ul>
+	</div>
+	<% end %>
+
+	<div class="row">
+		<div class="small-3 columns">
+			<%= f.label :username %>
+		</div>
+		<div class="small-3 columns">
+			<%= f.text_field :username %>
+		</div>
+		<div class="small-3 columns">
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-3 columns">
+			<%= f.label :email %>
+		</div>
+		<div class="small-3 columns">
+			<%= f.text_field :email %>
+		</div>
+		<div class="small-3 columns">
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-3 columns">
+			<%= f.label :password %>
+		</div>
+		<div class="small-3 columns">
+			<%= f.password_field :password %>
+		</div>
+		<div class="small-3 columns">
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-3 columns">
+			<%= f.label :password_confirmation, "Password confirmation" %>
+		</div>
+		<div class="small-3 columns">
+			<%= f.password_field :password_confirmation %>
+		</div>
+		<div class="small-3 columns">
+		</div>
+	</div>
+	<div class="row">
+		<% if f.object.id %>
+			<%= f.submit "Save", class: "button" %>
+		<% else %>
+			<%= f.submit "Register", class: "button" %>
+		<% end %>
+	</div>
+	<% end %>
