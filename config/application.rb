@@ -61,9 +61,5 @@ module Grammar
 
     config.assets.initialize_on_precompile = false
 
-    if defined? JRUBY_VERSION
-      require 'jdbc/mysql'
-      Jdbc::MySQL.load_driver
-    end
   end
 end
