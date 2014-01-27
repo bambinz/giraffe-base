@@ -10,7 +10,6 @@ describe "UserSessions" do
     describe "with correct credentials" do
       it "should login" do
         user = FactoryGirl.create :user
-        puts "user: #{user.to_json}"
         visit login_path
         fill_in "Username", :with => user.username
         fill_in "Password", :with => user.password
