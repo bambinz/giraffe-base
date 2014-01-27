@@ -14,10 +14,6 @@
  *= require my_styles
  */
 
-a:link {
-	color: #008cba !important;
-}
-
 a:visited.button {
 	color: #fff !important;
 }
