@@ -9,8 +9,15 @@ gem 'puma'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'activerecord-jdbcsqlite3-adapter'
 gem 'jruby-openssl'
+
+group :production do
+  gem 'activerecord-jdbcpostgresql-adapter'
+end
+
+group :development, :test do
+  gem 'activerecord-jdbcsqlite3-adapter'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
