@@ -16,7 +16,12 @@
 			</li>
 
 			<li id="notifications_link_bg">
-				<a id="notifications_link"><%= num_new_notifications %></a>
+				<% if num_new_notifications > 0 %>
+					<% image = '/assets/folder_doc_icon.png' %>
+				<% else %>
+					<% image = '/assets/folder_empty_icon.png' %>
+				<% end %>
+				<a id="notifications_link" style="background-image:url(<%=image%>);"></a>
 			</li>
 			<% else %>
 			<li class="active">
