@@ -3,6 +3,8 @@ Stub rails app used for starting a new project. Skip the setup.
 Uses:
 Rails 3.2
 Jruby 1.7.4
+Puma server
+Postgresql or sqlite3
 
 Includes:
 
