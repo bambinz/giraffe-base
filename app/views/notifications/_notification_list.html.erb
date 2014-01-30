@@ -1,0 +1,55 @@
+<div class="notifications-window notifications-outer-window notifications-right notifications-absolute" style="display: none;">
+	
+	<div class="notifications-window notifications-inner-window">
+	
+	<% if unseen_notifications && unseen_notifications.count > 0 %>
+	
+		<% unseen_notifications.each do |notification| %>
+			<% read_class = notification.read ? "" : "notifications-unread" %>
+			<% klass = rand(10000) %>
+			
+			<div class="notifications-notification <%= klass %> <%=read_class%>">
+				<div class="notifications-button notifications-info" style="display: block;">
+					<%= notification.title %>
+				</div>
+				<div class="notifications-popup" style="max-height: 421px; right: 350px; display: none; padding-right: 40px;"> 
+					<div class="row">
+							<b>Message:</b></br>
+							<%= notification.content %>
+					</div>
+					</br>
+					<div class="row">
+						<b>Received at:</b></br>
+						<%= notification.created_at %>
+					</div>
+					</br>
+					<div class="row">
+						<% if !notification.read %>
+						<%= link_to "Mark as Read", mark_as_read_notification_path(id: notification.id, klass: klass, js_action: 'hide'), remote: true, class: "button radius tiny secondary" %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	
+	<% else %>
+		<div class="notifications-notification">
+			<div class="notifications-button notifications-info" style="display: block;">
+				No new notifications
+			</div>
+		</div>
+	<% end %>
+	
+	</div>
+	
+	<div class="notifications-notification notifications-radius">
+		<div class="notifications-button" style="display: block;">
+			<% num_new = Notification.num_unread_notifications_for_user(@current_user) %>
+			<a href="/notifications" id="notifications-view-all">View All Notifications (<span id="notifications-view-all-number"><%= "#{num_new}" %></span> new)</a>
+		</div>
+	</div>
+	
+	
+</div>
+
+

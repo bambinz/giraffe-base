@@ -1,0 +1,125 @@
+// Place all the styles related to the Notifications controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#notifications-view-all {
+	color: #0d224a;
+	font-weight: bold;
+}
+
+#notifications-view-all:hover {
+	background-color: #fff;
+}
+
+.notifications-window .notifications-notification.notifications-unread .notifications-info{
+	/*background: #C2E0FF;*/
+}
+
+.notifications-window {
+  z-index: 2147483643;
+  top: 0px;
+	width: 350px;
+}
+
+.notifications-inner-window {
+	max-height: 400px;
+	overflow: scroll;
+}
+
+.notifications-window.notifications-fixed {
+  position: fixed;
+}
+
+.notifications-window.notifications-fixed.notifications-right {
+	right: 0px;
+}
+
+.notifications-window.notifications-fixed.notifications-left {
+	left: 0px;
+}
+
+.notifications-window.notifications-absolute {
+  position: absolute;
+	top: 45px;
+}
+
+.notifications-window.notifications-absolute.notifications-right {
+	right: 0px;
+}
+
+.notifications-window.notifications-absolute.notifications-left {
+	left: 0px;
+}
+
+.notifications-outer-window.notifications-right .notifications-notification.notifications-radius .notifications-button {
+  -webkit-border-bottom-left-radius: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  border-bottom-left-radius: 10px;
+	margin-top: -15px;
+}
+
+.notifications-window.notifications-right .notifications-button {
+  border-left: 1px solid #888888;
+}
+
+.notifications-outer-window.notifications-left .notifications-notification.notifications-radius .notifications-button {
+  -webkit-border-bottom-right-radius: 10px;
+  -moz-border-radius-bottomright: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.notifications-window.notifications-left .notifications-button {
+  border-right: 1px solid #888888;
+}
+
+.notifications-window .notifications-button {
+  display: none;
+  z-index: 2147483640;
+  border-bottom: 1px solid #888888;
+  background-color: #fff;
+  padding: 4px 7px;
+  text-align: left;
+  cursor: pointer;
+}
+.notifications-window .notifications-button.notifications-button-active.notifications-info {
+  background-color: #0d224a;
+	color: #fff;
+}
+
+.notifications-window .notifications-popup {
+  display: none;
+	width: 400px;
+  z-index: 2147483641;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  padding: 5px 10px;
+  text-align: left;
+  line-height: 18px;
+  overflow: auto;
+  -moz-box-shadow: 0px 1px 15px #555555;
+  -webkit-box-shadow: 0px 1px 15px #555555;
+  box-shadow: 0px 1px 15px #555555;
+}
+
+#notifications_link {
+	border-radius: 50%;
+	width: 45px;
+	height: 45px;
+	background: #0d224a;
+	text-align: center;
+	color: #fff;
+	cursor: pointer;
+}
+
+#notifications_link_bg {
+	color: #fff;
+}
+
+
+
+
+
+
+
+

@@ -76,6 +76,17 @@ html, body {
   height: 60px; 
 }
 
+#spinner {
+	position: fixed;
+	z-index: 1000;
+	top: 50%;
+	left: 50%;
+}
+
+.flash-container {
+	position: absolute;
+}
+
 
 
 

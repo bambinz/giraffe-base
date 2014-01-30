@@ -1,0 +1,34 @@
+<div class="row">
+<h1>All Notifications</h1>
+
+<%= link_to "Mark all as Read", notifications_mark_all_as_read_path(), class: "button tiny" %>
+
+<table>
+  <tr>
+		<th>Content</th>
+		<th>Type</th>
+		<th>Priority</th>
+		<th>Read</th>
+		<th></th>
+  </tr>
+
+<% @notifications.each do |notification| %>
+	<% klass = rand(10000) %>
+  <tr class="table_row">
+		<td><%= notification.content %></td>
+		<td><%= Notification::NOTIFICATION_TYPES[notification.notification_type] %></td>
+		<td><%= Notification::NOTIFICATION_PRIORITIES[notification.priority] %></td>
+		<td class="<%= klass %> read_column"><%= notification.read ? "Yes" : "No" %></td>
+		<td>
+			<% if !notification.read %>
+				<%= link_to "Mark as Read", mark_as_read_notification_path(id: notification.id, klass: klass, js_action: 'update'), remote: true, class: "button tiny" %>
+			<% end %>
+		</td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to "Mark all as Read", notifications_mark_all_as_read_path(), class: "button tiny" %>
+
+<br />
+</div>

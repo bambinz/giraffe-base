@@ -17,21 +17,28 @@
 
 	<%= stylesheet_link_tag "application" %>
 	<%= javascript_include_tag "vendor/modernizr" %>
-	
+
 	<%= csrf_meta_tags %>
 </head>
 
 <body>
 	<div class="page-wrap">
 
-	<%= render "layouts/navbar" %>
+		<div id="spinner">
+			<%= image_tag image_path('ajax_loader.gif') %>
+		</div>
 
-	<%= yield %>
+		<%= render "layouts/navbar" %>
 
-</div>
+		<%= render partial: 'layouts/flash', locals: { flash: flash } %>
+		<%= render 'notifications/notification_list', unseen_notifications: unseen_notifications %>
 
-<%= render "layouts/footer" %>
+		<%= yield %>
 
-<%= javascript_include_tag "application" %>
+	</div>
+
+	<%= render "layouts/footer" %>
+
+	<%= javascript_include_tag "application" %>
 </body>
 </html>

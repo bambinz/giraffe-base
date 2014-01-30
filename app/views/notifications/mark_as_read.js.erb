@@ -1,0 +1,25 @@
+$(".<%= klass %>.notifications-notification").hide(200, 'swing')
+$(".<%= klass %>.notifications-notification").html("")
+$(".<%= klass %>.read_column").html("<%=seen%>")
+$(".<%= klass %>.read_column").closest(".table_row").find(".button").hide()
+
+//TODO: Return number of seen and read notifications to update the views properly
+num_notifications = $("#notifications_link").html()
+if(num_notifications && num_notifications != "") {
+	num = parseInt(num_notifications)
+	if(num > 0) {
+		num -= 1
+	}
+	num_notifications = num
+	$("#notifications_link").html(num_notifications)
+}
+
+all_notifications_link = $("#notifications-view-all-number").html()
+if(all_notifications_link && all_notifications_link != "") {
+	num = parseInt(all_notifications_link)
+	if(num > 0) {
+		num -= 1
+	}
+	all_notifications_link = num
+	$("#notifications-view-all-number").html(all_notifications_link)
+}

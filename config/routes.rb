@@ -4,8 +4,16 @@ Grammar::Application.routes.draw do
   
   get "logout" => "user_sessions#destroy", :as => "logout"
   get "login" => "user_sessions#new", :as => "login"
+  get "notifications/mark_all_as_read" => "notifications#mark_all_as_read"
+  
   resources :user_sessions
   resources :users
+  resources :notifications do
+    member do
+      get 'mark_as_seen'
+      get 'mark_as_read'
+    end
+  end
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

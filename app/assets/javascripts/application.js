@@ -18,3 +18,13 @@
 $(document).foundation();
 
 $(function(){ $(document).foundation(); });
+
+$("#spinner").hide();
+
+$(document).ajaxStart(function() {
+  return $("#spinner").show();
+});
+
+$(document).ajaxStop(function() {
+  return $("#spinner").hide();
+});
