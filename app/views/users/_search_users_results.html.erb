@@ -1,0 +1,14 @@
+<% users.each do |user| %>
+	<div class="row">
+		<div class="small-3 columns">
+			<%= user.username %>
+		</div>
+		<div class="small-3 columns">
+			<%= link_to "View Profile", "#", class: "button tiny" %>
+		</div>
+		<div class="small-6 columns">
+			<%= link_to "Send Friend Request", "#", class: "button tiny" %>
+		</div>
+
+	</div>
+<% end %>

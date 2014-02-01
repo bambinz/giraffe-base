@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require jquery.facebox
 //= require_tree .
 
 $(document).foundation();
@@ -28,3 +29,10 @@ $(document).ajaxStart(function() {
 $(document).ajaxStop(function() {
   return $("#spinner").hide();
 });
+
+$(document).bind("beforeReveal.facebox", function() {
+  $('#facebox').width('500px');
+	$('#facebox .content').width('500px');
+});
+
+

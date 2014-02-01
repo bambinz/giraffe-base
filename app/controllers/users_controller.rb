@@ -17,6 +17,9 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    @is_remote = true
+    @friends = []
+    @user_settings = nil
 
     respond_to do |format|
       format.html # show.html.erb
@@ -38,6 +41,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    @is_remote = false
   end
 
   # POST /users
@@ -65,6 +69,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'Successfully updated profile.' }
+        format.js { render layout: false }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -80,6 +85,38 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to users_url }
       format.json { head :no_content }
+    end
+  end
+  
+  def list_friends
+    @friends = current_user.friends
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @user_friends }
+    end
+  end
+
+  def show_friend
+    @user = User.find(params[:user_id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @user_friend }
+    end
+  end
+  
+  def search_users_window
+    respond_to do |format|
+      format.js { render layout: false }
+    end
+  end
+  
+  def search_users
+    @users = User.where('username like ?', params[:search])
+    
+    respond_to do |format|
+      format.js { render layout: false }
     end
   end
 

@@ -1,38 +1,46 @@
+
 <div class="row">
-	<h1>My profile</h1>
+	<div class="left-nav-top-bar">
+		<h1 class="nav_top_title">My Profile</h1>
+	</div>
+	<div class="left-nav">
+		<div class="left-nav-title">
+			Menu
+		</div>
+		
+		<div class="left-nav-list-area">
+			<ul class="left-nav-list">
+				<li><%= link_to "My Profile", "#", id: "nav_my_profile" %></li>
+				<li><%= link_to "My Friends", "#", id: "nav_my_friends" %></li>
+				<li><%= link_to "Settings", "#", id: "nav_settings" %></li>
+			</ul>
+		</div>
+	</div>
+	<div class="main-section">
+		
+		</br></br>
+
+		<div class="content show_profile has_focus">
+			<%= render 'user_details' %>
+		</div>
+		
+		<div class="content edit_profile" style="display:none;">
+			<%= render 'form' %>
+		</div>
+		
+		<div class="content my_friends" style="display:none;">
+			<%= render 'my_friends' %>
+		</div>
+		
+		<div class="content settings" style="display:none;">
+			<%= render 'settings' %>
+		</div>
+
+	</div>
 </div>
-<br>
+
+
 
 <div class="row">
-	<div class="small-3 columns">
-		Username
-	</div>
-	<div class="small-3 columns">
-		<%= @user.username %>
-	</div>
-	<div class="small-3 columns">
-	</div>
-</div>
-
-<div class="row">
-	<div class="small-3 columns">
-		Email
-	</div>
-	<div class="small-3 columns">
-		<%= @user.email %>
-	</div>
-	<div class="small-3 columns">
-	</div>
-</div>
-
-</br></br>
-
-<div class="row">
-<%= link_to 'Edit Profile', edit_user_path(@user), class: "button" %>
-</div>
-
-</br>
-
-<div class="row">
-<%= link_to 'Back', root_path %>
+<%= link_to 'Back', root_path, class: "button tiny secondary" %>
 </div>

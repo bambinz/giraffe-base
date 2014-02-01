@@ -1,0 +1,15 @@
+<% @friends.each do |friend| %>
+	Name: <%= friend.username %>
+<% end %>
+
+<% if @friends.count == 0 %>
+	<div class="row">
+		You have no friends :c
+	</div>
+<% end %>
+
+</br></br></br>
+
+<div class="row centered">
+	<%= link_to "Search for a Friend", users_search_users_window_path(id: @user.id), remote: true, class: "button" %>
+</div>

@@ -1,0 +1,11 @@
+$('.user_username').text("<%=@user.username%>")
+$('.user_email').text("<%=@user.email%>")
+$('#user_password').val("")
+$('#user_password_confirmation').val("")
+
+
+$('.has_focus').hide(200, 'swing')
+$('.has_focus').removeClass('has_focus')
+
+$('.show_profile').addClass('has_focus')
+$('.show_profile').show(200, 'swing')

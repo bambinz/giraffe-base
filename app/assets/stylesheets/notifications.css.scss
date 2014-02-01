@@ -107,7 +107,9 @@
 	height: 45px;
 	text-align: center;
 	cursor: pointer;
-	background-size: 45px 45px;
+	background-size: 30px 30px;
+	background-repeat: no-repeat;
+	background-position:center; 
 }
 
 #notifications_link_bg {

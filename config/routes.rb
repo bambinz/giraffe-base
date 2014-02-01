@@ -1,10 +1,22 @@
 Grammar::Application.routes.draw do
-  
+
   root to: "home#index"
   
   get "logout" => "user_sessions#destroy", :as => "logout"
   get "login" => "user_sessions#new", :as => "login"
   get "notifications/mark_all_as_read" => "notifications#mark_all_as_read"
+  
+  get "key_requests/list_friend_requests" => "key_requests#list_friend_requests"
+  get "key_requests/send_friend_request" => "key_requests#send_friend_request"
+  get "key_requests/accept_friend_request" => "key_requests#accept_friend_request"
+  
+  get "user_friends/remove_friend" => "user_friends#remove_friend"
+  
+  get "users/list_friends" => "users#list_friends"
+  get "users/show_friend" => "users#show_friend"
+  get "users/search_users_window" => "users#search_users_window"
+  get "users/search_users" => "users#search_users"
+  
   
   resources :user_sessions
   resources :users

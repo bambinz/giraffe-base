@@ -1,0 +1,21 @@
+<h1>Listing user_friends</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @user_friends.each do |user_friend| %>
+  <tr>
+    <td><%= link_to 'Show', user_friend %></td>
+    <td><%= link_to 'Edit', edit_user_friend_path(user_friend) %></td>
+    <td><%= link_to 'Destroy', user_friend, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New User friend', new_user_friend_path %>

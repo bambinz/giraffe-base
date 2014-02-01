@@ -11,9 +11,14 @@
  *= require_self
  *= require_tree .
  *= require foundation_and_overrides
+ *= require jquery.facebox
  *= require my_styles
  */
 
 a:visited.button {
 	color: #fff !important;
+}
+
+a:visited.button.secondary {
+	color: #000 !important;
 }
