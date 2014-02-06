@@ -20,6 +20,8 @@ class UsersController < ApplicationController
     @is_remote = true
     @friends = []
     @user_settings = nil
+    @sent_requests = KeyRequest.sent_friend_requests_for_user(current_user)
+    @received_requests = KeyRequest.received_friend_requests_for_user(current_user)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -98,11 +100,11 @@ class UsersController < ApplicationController
   end
 
   def show_friend
-    @user = User.find(params[:user_id])
+    @friend = User.find(params[:friend_id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @user_friend }
+      format.json { render json: @friend }
     end
   end
   

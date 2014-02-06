@@ -1,9 +1,9 @@
 class KeyRequestsController < ApplicationController
   
-  filter_resource_access
+  filter_access_to :all, except: [:send_friend_request]
   
   def list_friend_requests
-    @key_requests = KeyRequest.where(key_request_type: KeyRequest::KeyRequestType::FRIEND_REQUEST)
+    @key_requests = KeyRequest.list_friend_requests_for_user(current_user)
     
     respond_to do |format|
       format.html
@@ -12,10 +12,10 @@ class KeyRequestsController < ApplicationController
   end
   
   def send_friend_request
-    KeyRequest.generate_friend_request(current_user, User.find(params[:friend_id]))
-
+    @request = KeyRequest.generate_friend_request(current_user, User.find(params[:friend_id]))
+    
     respond_to do |format|
-      format.html
+      format.js { render layout: false }
       format.json { render json: @user_friend }
     end
   end

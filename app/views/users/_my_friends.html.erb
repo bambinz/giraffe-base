@@ -1,15 +1,39 @@
 <% @friends.each do |friend| %>
-	Name: <%= friend.username %>
+Name: <%= friend.username %>
 <% end %>
 
 <% if @friends.count == 0 %>
-	<div class="row">
-		You have no friends :c
-	</div>
+<div class="row">
+	You have no friends :c
+</div>
 <% end %>
 
 </br></br></br>
 
 <div class="row centered">
 	<%= link_to "Search for a Friend", users_search_users_window_path(id: @user.id), remote: true, class: "button" %>
+</div>
+
+<div class="row received_requests_title" style="<%=@received_requests.count > 0 ? "" : "display:none;"%>">
+	<h4>
+		Received Friend Requests
+	</h4>
+</div>
+
+<div class="row received_requests_list">
+	<% @received_requests.each do |fr| %>
+		<%= render 'key_requests/sent_request_list_row', request: fr, type: :received %>
+	<% end %>
+</div>
+
+<div class="row sent_requests_title" style="<%=@sent_requests.count > 0 ? "" : "display:none;"%>">
+	<h4>
+		Sent Friend Requests
+	</h4>
+</div>
+
+<div class="row sent_requests_list">
+	<% @sent_requests.each do |fr| %>
+		<%= render 'key_requests/sent_request_list_row', request: fr, type: :sent %>
+	<% end %>
 </div>

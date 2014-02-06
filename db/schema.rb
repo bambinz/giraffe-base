@@ -15,13 +15,14 @@ ActiveRecord::Schema.define(:version => 20140131005515) do
 
   create_table "key_requests", :force => true do |t|
     t.integer  "user_id"
+    t.integer  "to_user_id"
     t.string   "key"
     t.datetime "expire_date"
     t.datetime "accepted_date"
-    t.boolean  "accepted",         :default => false
+    t.boolean  "accepted"
     t.integer  "key_request_type"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "notifications", :force => true do |t|

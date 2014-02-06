@@ -87,6 +87,7 @@ GEM
       railties (>= 3.0.0)
     faker (1.2.0)
       i18n (~> 0.5)
+    ffi (1.9.3)
     ffi (1.9.3-java)
     formatador (0.2.4)
     foundation-rails (5.0.3.1)
@@ -117,6 +118,7 @@ GEM
       term-ansicolor
     jruby-openssl (0.9.4)
       bouncy-castle-java (>= 1.5.0147)
+    json (1.8.1)
     json (1.8.1-java)
     listen (2.4.0)
       celluloid (>= 0.15.2)
@@ -130,14 +132,23 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.5.2)
     multi_json (1.8.4)
+    nokogiri (1.6.1)
+      mini_portile (~> 0.5.0)
     nokogiri (1.6.1-java)
       mini_portile (~> 0.5.0)
     polyglot (0.3.3)
+    possessive (1.0.1)
+    pry (0.9.12.4)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
     pry (0.9.12.4-java)
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
       spoon (~> 0.0)
+    puma (2.7.1)
+      rack (>= 1.1, < 2.0)
     puma (2.7.1-java)
       rack (>= 1.1, < 2.0)
     rack (1.4.5)
@@ -245,6 +256,7 @@ DEPENDENCIES
   jquery-rails
   jruby-lint
   jruby-openssl
+  possessive
   puma
   rails (= 3.2.13)
   rb-fsevent

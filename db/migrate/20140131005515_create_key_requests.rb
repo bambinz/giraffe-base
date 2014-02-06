@@ -6,7 +6,7 @@ class CreateKeyRequests < ActiveRecord::Migration
       t.string :key
       t.datetime :expire_date
       t.datetime :accepted_date
-      t.boolean :accepted, default: false
+      t.boolean :accepted
       t.integer :key_request_type
       t.timestamps
     end

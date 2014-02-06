@@ -40,6 +40,7 @@ gem 'facebox-rails'
 gem 'will_paginate', '~> 3.0'
 gem 'foundation-will_paginate'
 gem 'wicked'
+gem "possessive"
 
 group :development do
   gem "better_errors"

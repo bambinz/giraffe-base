@@ -1,0 +1,14 @@
+<div class="row">
+	<div class="small-3 columns">
+		<% friend = User.find(request.to_user_id) %>
+		<%= friend.username %>
+	</div>
+	<div class="small-3 columns">
+		<%= request.created_at.strftime("%d/%m/%Y") %>
+	</div>
+	<div class="small-3 columns">
+		<% if type == :received %>
+		<%= link_to "Accept Friend Request", "#", remote: true, class: "button tiny" %>
+		<% end %>
+	</div>
+</div>

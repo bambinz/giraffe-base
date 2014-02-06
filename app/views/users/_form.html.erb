@@ -60,7 +60,9 @@
 		</div>
 	</div>
 	
-	<%= link_to "Toggle Password Fields", "#", id: "change_password_button", class: "button secondary tiny" %>
+	<% if f.object.id %>
+		<%= link_to "Toggle Password Fields", "#", id: "change_password_button", class: "button secondary tiny" %>
+	<% end %>
 	
 	</br></br>
 	

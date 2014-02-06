@@ -1,7 +1,9 @@
+<div id="flash">
+</div>
 
 <div class="row">
 	<div class="left-nav-top-bar">
-		<h1 class="nav_top_title">My Profile</h1>
+		<h1 class="nav_top_title"></h1>
 	</div>
 	<div class="left-nav">
 		<div class="left-nav-title">
@@ -20,7 +22,7 @@
 		
 		</br></br>
 
-		<div class="content show_profile has_focus">
+		<div class="content show_profile" style="display:none;">
 			<%= render 'user_details' %>
 		</div>
 		
@@ -39,8 +41,6 @@
 	</div>
 </div>
 
-
-
 <div class="row">
-<%= link_to 'Back', root_path, class: "button tiny secondary" %>
+	<%= link_to 'Back', root_path, class: "button tiny secondary" %>
 </div>

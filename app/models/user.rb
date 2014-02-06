@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
       role.name.underscore.to_sym
     end
   end
+
+  def has_friend_request_with?(friend)
+    (KeyRequest.where(user_id: id, to_user_id: friend.id).count != 0) || (KeyRequest.where(user_id: friend.id, to_user_id: id).count != 0)
+  end
 end

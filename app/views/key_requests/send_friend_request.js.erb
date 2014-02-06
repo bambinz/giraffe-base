@@ -1,0 +1,5 @@
+<% if @request %>
+	$(".send_friend_request_button").text("Sent!")
+	$(".sent_requests_title").show(200, "swing")
+	$(".sent_requests_list").append("<%= escape_javascript(render(partial: 'sent_request_list_row', locals: { request: @request, type: :sent }))%>")
+<% end %>
