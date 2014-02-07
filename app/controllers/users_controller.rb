@@ -122,7 +122,7 @@ class UsersController < ApplicationController
   end
   
   def search_users
-    @users = User.where('username like ?', params[:search]).joins(:setting).where("settings.show_in_search is 't'")
+    @users = User.where('lower(username) like ?', params[:search]).joins(:setting).where("settings.show_in_search is 't'")
     
     respond_to do |format|
       format.js { render layout: false }
