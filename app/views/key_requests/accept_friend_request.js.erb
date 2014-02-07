@@ -1,0 +1,6 @@
+$(".no_friends_message").hide(200, "swing")
+$(".request_<%=@key_request.id%>").closest(".friend_row").hide(200, "swing")
+$(".friends_list").append("<%= escape_javascript(render(partial: 'user_friends/friends_list_row', locals: { friend: @friend }))%>")
+if (<%=@num_received_requests%> == 0) {
+	$(".received_requests_title").hide(200, "swing")
+}

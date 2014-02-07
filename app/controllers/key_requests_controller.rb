@@ -7,7 +7,7 @@ class KeyRequestsController < ApplicationController
     
     respond_to do |format|
       format.html
-      format.json { render json: @user_friend }
+      format.json { render json: @key_requests }
     end
   end
   
@@ -16,17 +16,19 @@ class KeyRequestsController < ApplicationController
     
     respond_to do |format|
       format.js { render layout: false }
-      format.json { render json: @user_friend }
+      format.json { render json: @request }
     end
   end
   
   def accept_friend_request
-    @key_request = KeyRequest.find(params[:key_request_id])
+    @key_request = KeyRequest.find(params[:id])
     @key_request.accept_friend_request
+    @friend = @key_request.user
+    @num_received_requests = KeyRequest.received_friend_requests_for_user(current_user).count
     
     respond_to do |format|
-      format.html
-      format.json { render json: @user_friend }
+      format.js { render layout: false }
+      format.json { render json: @key_request }
     end
   end
 end

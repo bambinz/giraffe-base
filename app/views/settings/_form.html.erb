@@ -1,0 +1,74 @@
+<%= form_for(@setting, remote: true) do |f| %>
+  <% if @setting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@setting.errors.count, "error") %> prohibited this setting from being saved:</h2>
+
+      <ul>
+      <% @setting.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<div class="row">
+		<div class="small-3 columns">
+			<%= f.label :show_in_search, "Show profile in search?" %>
+		</div>
+		<div class="small-3 columns">
+			<%= f.check_box :show_in_search %>
+		</div>
+		<div class="small-3 columns">
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns explanation_text">
+			If not selected, your name and profile will not be shown to any other users in search results.
+		</div>
+	</div>
+	</br></br>
+	
+	<div class="row">
+		<div class="small-3 columns">
+			<%= f.label :accept_friend_reqests, "Accept friend requests?" %>
+		</div>
+		<div class="small-3 columns">
+			<%= f.check_box :accept_friend_reqests %>
+		</div>
+		<div class="small-3 columns">
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns explanation_text">
+			Users will not be able to send you friend requests if this option is turned off.
+		</div>
+	</div>
+	</br></br>
+	
+	<div class="row">
+		<div class="small-3 columns">
+			<%= f.label :public_profile, "Profile viewable to all?" %>
+		</div>
+		<div class="small-3 columns">
+			<%= f.check_box :public_profile %>
+		</div>
+		<div class="small-3 columns">
+		</div>
+	</div>
+	<div class="row">
+		<div class="small-12 columns explanation_text">
+			Your profile is only viewable to friends if this option is not selected.
+		</div>
+	</div>
+	</br></br>
+	
+	</br></br>
+
+  <div class="actions">
+    <%= f.submit "Update Settings", class: "button" %>
+  </div>
+
+	<div id="flash" class="success_flash_label" style="display:none;">
+	</div>
+	
+<% end %>

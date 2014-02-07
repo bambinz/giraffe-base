@@ -4,6 +4,8 @@
 
 jQuery ->
 	
+	$(".username_field").focus()
+	
 	$('#edit_profile_button').click (event) ->
 		hide_focused()
 		$('.edit_profile').addClass('has_focus')

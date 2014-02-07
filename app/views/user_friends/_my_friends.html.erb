@@ -1,9 +1,11 @@
-<% @friends.each do |friend| %>
-Name: <%= friend.username %>
-<% end %>
+<div class="friends_list">
+	<% @friends.each do |friend| %>
+		<%= render "user_friends/friends_list_row", friend: friend %>
+	<% end %>
+</div>
 
 <% if @friends.count == 0 %>
-<div class="row">
+<div class="row no_friends_message">
 	You have no friends :c
 </div>
 <% end %>
@@ -22,7 +24,7 @@ Name: <%= friend.username %>
 
 <div class="row received_requests_list">
 	<% @received_requests.each do |fr| %>
-		<%= render 'key_requests/sent_request_list_row', request: fr, type: :received %>
+		<%= render 'key_requests/request_list_row', request: fr, type: :received %>
 	<% end %>
 </div>
 
@@ -34,6 +36,6 @@ Name: <%= friend.username %>
 
 <div class="row sent_requests_list">
 	<% @sent_requests.each do |fr| %>
-		<%= render 'key_requests/sent_request_list_row', request: fr, type: :sent %>
+		<%= render 'key_requests/request_list_row', request: fr, type: :sent %>
 	<% end %>
 </div>

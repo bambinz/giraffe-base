@@ -1,12 +1,12 @@
 class User < ActiveRecord::Base
   acts_as_authentic
-  attr_accessible :email, :password, :username, :password_confirmation
+  attr_accessible :email, :password, :username, :password_confirmation, :first_name, :last_name, :caption, :about_me
   has_many :user_roles
   has_many :roles, through: :user_roles
   has_many :key_requests
-  
   has_many :user_friends
   has_many :friends, through: :user_friends, class_name: "User", source: :friend
+  has_one :setting
   
   def role_symbols
     roles.map do |role|
@@ -17,4 +17,28 @@ class User < ActiveRecord::Base
   def has_friend_request_with?(friend)
     (KeyRequest.where(user_id: id, to_user_id: friend.id).count != 0) || (KeyRequest.where(user_id: friend.id, to_user_id: id).count != 0)
   end
+  
+  def is_friends_with(user)
+    friends.include?(user)
+  end
+  
+  def can_send_friend_request_to_user(user)
+    if self == user
+      return false
+    elsif self.is_friends_with(user)
+      return false
+    elsif !user.setting.accept_friend_reqests
+      return false
+    else
+      return true
+    end
+  end
+  
+  def can_see_users_profile?(user)
+    if !is_friends_with(user) && !user.setting.public_profile
+      return false
+    end
+    return true
+  end
+  
 end

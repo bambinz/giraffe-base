@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140131005515) do
+ActiveRecord::Schema.define(:version => 20140207074434) do
 
   create_table "key_requests", :force => true do |t|
     t.integer  "user_id"
@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(:version => 20140131005515) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "settings", :force => true do |t|
+    t.integer  "user_id"
+    t.boolean  "show_in_search"
+    t.boolean  "accept_friend_reqests"
+    t.boolean  "public_profile"
+    t.text     "public_attributes"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
   create_table "user_friends", :force => true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
@@ -69,6 +79,10 @@ ActiveRecord::Schema.define(:version => 20140131005515) do
     t.string   "persistence_token"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "caption"
+    t.text     "about_me"
   end
 
 end

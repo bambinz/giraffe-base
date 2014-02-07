@@ -1,5 +1,8 @@
 Grammar::Application.routes.draw do
 
+  resources :settings
+
+
   root to: "home#index"
   
   get "logout" => "user_sessions#destroy", :as => "logout"

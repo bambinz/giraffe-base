@@ -50,7 +50,7 @@ class KeyRequest < ActiveRecord::Base
     if UserFriend.add_friend(user_id, to_user_id)
       self.accepted_date = Date.current
       self.accepted = true
-      self.save
+      self.save!
     else
       return RequestResult::ERROR
     end
@@ -61,11 +61,11 @@ class KeyRequest < ActiveRecord::Base
   end
 
   def self.sent_friend_requests_for_user(user)
-    KeyRequest.where(key_request_type: KeyRequest::KeyRequestType::FRIEND_REQUEST, user_id: user.id)
+    KeyRequest.where(key_request_type: KeyRequest::KeyRequestType::FRIEND_REQUEST, user_id: user.id, accepted: false)
   end
   
   def self.received_friend_requests_for_user(user)
-    KeyRequest.where(key_request_type: KeyRequest::KeyRequestType::FRIEND_REQUEST, to_user_id: user.id)
+    KeyRequest.where(key_request_type: KeyRequest::KeyRequestType::FRIEND_REQUEST, to_user_id: user.id, accepted: false)
   end
 
 end

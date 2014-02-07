@@ -1,6 +1,7 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "foundation/components/labels";
 
 .left-nav {
 	width: 200px;
@@ -74,5 +75,20 @@
 	font-size: 0.875rem;
 }
 
+.explanation_text {
+	font-size: 0.6rem;
+}
+
+
+.success_flash_label {
+  @include label(
+    // This options sets label padding
+    $padding:7px 100px 9px 100px,
+    // This option sets label text-size
+    $text-size:16px,
+    // This option sets label background-color
+    $bg:#389F57
+  );
+}
 
 

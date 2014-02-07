@@ -1,6 +1,10 @@
-<div class="row">
+<div class="friend_row">
 	<div class="small-3 columns">
+		<% if type == :received %>
+			<% friend = User.find(request.user_id) %>
+		<% else %>
 		<% friend = User.find(request.to_user_id) %>
+		<% end %>
 		<%= friend.username %>
 	</div>
 	<div class="small-3 columns">
@@ -8,7 +12,8 @@
 	</div>
 	<div class="small-3 columns">
 		<% if type == :received %>
-		<%= link_to "Accept Friend Request", "#", remote: true, class: "button tiny" %>
+			<%= link_to "Accept Friend Request", key_requests_accept_friend_request_path(id: request.id), remote: true, class: "button tiny request_#{request.id}" %>
 		<% end %>
 	</div>
 </div>
+</br>

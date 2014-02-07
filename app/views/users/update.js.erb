@@ -1,5 +1,10 @@
 $('.user_username').text("<%=@user.username%>")
 $('.user_email').text("<%=@user.email%>")
+$('.user_first_name').text("<%=@user.first_name%>")
+$('.user_last_name').text("<%=@user.last_name%>")
+$('.user_caption').text("<%=raw @user.caption%>")
+$('.user_about_me').text("<%=raw @user.about_me%>")
+
 $('#user_password').val("")
 $('#user_password_confirmation').val("")
 

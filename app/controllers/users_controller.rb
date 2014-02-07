@@ -18,10 +18,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @is_remote = true
-    @friends = []
+    @friends = current_user.friends
     @user_settings = nil
     @sent_requests = KeyRequest.sent_friend_requests_for_user(current_user)
     @received_requests = KeyRequest.received_friend_requests_for_user(current_user)
+    @setting = @user.setting
 
     respond_to do |format|
       format.html # show.html.erb
@@ -51,10 +52,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     @user.roles << Role.find_by_name(:user)
+    @user.build_setting
+    @user.setting.set_defaults
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'Registration successful.' }
+        format.html { redirect_to root_url, notice: 'Registration successful.' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
@@ -101,6 +104,10 @@ class UsersController < ApplicationController
 
   def show_friend
     @friend = User.find(params[:friend_id])
+    if !current_user.can_see_users_profile?(@friend)
+      redirect_to root_url, flash: { error: "You are not friends with this user and their profile is not public." }
+      return false
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -115,7 +122,7 @@ class UsersController < ApplicationController
   end
   
   def search_users
-    @users = User.where('username like ?', params[:search])
+    @users = User.where('username like ?', params[:search]).joins(:setting).where("settings.show_in_search is 't'")
     
     respond_to do |format|
       format.js { render layout: false }

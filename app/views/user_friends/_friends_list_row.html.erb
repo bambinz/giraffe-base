@@ -1,0 +1,14 @@
+<div class="row">
+	<%= friend.username %>
+</div>
+<div class="row">
+	Joined: <%= friend.created_at %>
+</div>
+
+</br>
+
+<div class="row">
+	<%= link_to "View Profile", users_show_friend_path(id: @current_user.id, friend_id: friend.id), class: "button tiny" %>
+</div>
+
+</br>
