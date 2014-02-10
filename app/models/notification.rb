@@ -3,7 +3,8 @@ class Notification < ActiveRecord::Base
   attr_accessible :user_id, :content, :notification_type, :priority, :seen, :read
 
   module NotificationTypes
-    FRIEND_REQUEST = 0
+    RECEIVED_FRIEND_REQUEST = 0
+    ACCEPT_FRIEND_REQUEST = 1
   end
 
   module NotificationPriorities
@@ -12,7 +13,7 @@ class Notification < ActiveRecord::Base
     HIGH = 2
   end
 
-  NOTIFICATION_TYPES = { 0 => "Friend Request" }
+  NOTIFICATION_TYPES = { 0 => "Received Friend Request", 1 => "Accepted Fried Request" }
   NOTIFICATION_PRIORITIES = { 0 => "Low", 1 => "Medium", 2 => "High" }
 
   def self.notifications_for_user(current_user)
@@ -34,15 +35,13 @@ class Notification < ActiveRecord::Base
   def self.unread_notifications_for_user(current_user)
     if current_user
       res = Notification.where(user_id: current_user.id, read: false).order('created_at DESC')
-      puts "odsifnosdinf: #{res.to_json}"
       res
     end
   end
 
-  def self.create_notification(user_id, project_id, content, type, priority)
+  def self.create_notification(user_id, content, type, priority)
     notification = Notification.new
     notification.user_id = user_id
-    notification.project_id = project_id
     notification.content = content
     notification.notification_type = type
     notification.priority = priority
@@ -69,12 +68,18 @@ class Notification < ActiveRecord::Base
       puts 'SOMETHING WENT WRONG'
       return ""
     end
-
-    if notification_type == NotificationTypes::FRIEND_REQUEST
-      "You have received a friend request."
-    else
-      ""
-    end
+    
+    NOTIFICATION_TYPES[notification_type]
+  end
+  
+  def self.received_friend_request_notification(for_user, from_user)
+    content = "You have received a friend request from #{from_user.username}."
+    create_notification(for_user.id, content, NotificationTypes::RECEIVED_FRIEND_REQUEST, NotificationPriorities::LOW)
+  end
+  
+  def self.accepted_friend_request_notification(for_user, from_user)
+    content = "#{from_user.username} has accepted your friend request."
+    create_notification(for_user.id, content, NotificationTypes::ACCEPT_FRIEND_REQUEST, NotificationPriorities::LOW)
   end
 
 

@@ -61,6 +61,7 @@ class NotificationsController < ApplicationController
     @notification.seen = true
     @notification.read = true
     @notification.save
+    @notifications_count = Notification.unread_notifications_for_user(current_user).count
     
     @js_action = params[:js_action]
 

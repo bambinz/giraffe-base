@@ -23,3 +23,10 @@ if(all_notifications_link && all_notifications_link != "") {
 	all_notifications_link = num
 	$("#notifications-view-all-number").html(all_notifications_link)
 }
+
+count = <%=@notifications_count.to_i%>
+if (count <= 0)
+{
+	console.log("count is 0")
+	$("#notifications_link").css('background-image', 'url(/assets/folder_empty_icon.png)');
+}

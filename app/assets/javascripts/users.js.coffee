@@ -56,16 +56,14 @@ jQuery ->
 	$('#nav_settings').click (event) ->
 		show_settings()
 		
-	console.log("here")
 	if (readCookie("profileTab") == "myProfile")
 		show_profile()
-		console.log("here2")
 	else if (readCookie("profileTab") == "myFriends")
 		show_my_friends()
-		console.log("here3")
 	else if (readCookie("profileTab") == "settings")
 		show_settings()
-		console.log("here4")
+	else
+		show_profile()
 	
 	
 	

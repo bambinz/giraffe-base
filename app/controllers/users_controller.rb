@@ -122,7 +122,10 @@ class UsersController < ApplicationController
   end
   
   def search_users
-    @users = User.where('lower(username) like ?', params[:search]).joins(:setting).where("settings.show_in_search is 't'")
+    @users = []
+    if params[:search] && params[:search] != "" && params[:search].gsub(" ", "") != ""
+      @users = User.where('username ILIKE ?', "%#{params[:search]}%").joins(:setting).where("settings.show_in_search" => true)
+    end
     
     respond_to do |format|
       format.js { render layout: false }

@@ -11,13 +11,13 @@ gem 'puma'
 
 gem 'jruby-openssl'
 
-group :production do
-  gem 'activerecord-jdbcpostgresql-adapter'
-end
 
-group :development, :test do
+  gem 'activerecord-jdbcpostgresql-adapter'
+
+
+
   gem 'activerecord-jdbcsqlite3-adapter'
-end
+
 
 # Gems used only for assets and not required
 # in production environments by default.

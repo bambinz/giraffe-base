@@ -1,6 +1,6 @@
 class KeyRequest < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :expire_date, :key, :accepted, :accepted_date, :key_request_type, :to_user_id
+  attr_accessible :expire_date, :key, :accepted, :accepted_date, :key_request_type, :to_user_id, :ignored
   validates_presence_of :expire_date, :key, :key_request_type, :to_user_id
 
   module KeyRequestType
@@ -30,8 +30,11 @@ class KeyRequest < ActiveRecord::Base
       kr.expire_date = Date.current + 30.days
       kr.accepted = false
       kr.generate_key
-      puts kr.to_json
+      kr.ignored = false
       kr.save
+      
+      Notification.received_friend_request_notification(friend, user)
+      
       kr
     else
       return nil
@@ -50,14 +53,22 @@ class KeyRequest < ActiveRecord::Base
     if UserFriend.add_friend(user_id, to_user_id)
       self.accepted_date = Date.current
       self.accepted = true
+      
+      Notification.accepted_friend_request_notification(User.find(user_id), User.find(to_user_id))
+      
       self.save!
     else
       return RequestResult::ERROR
     end
   end
 
-  def reject_friend_request
-    self.delete!
+  def remove_friend_request
+    self.destroy
+  end
+  
+  def ignore_friend_request
+    self.ignored = true
+    self.save
   end
 
   def self.sent_friend_requests_for_user(user)
@@ -65,7 +76,7 @@ class KeyRequest < ActiveRecord::Base
   end
   
   def self.received_friend_requests_for_user(user)
-    KeyRequest.where(key_request_type: KeyRequest::KeyRequestType::FRIEND_REQUEST, to_user_id: user.id, accepted: false)
+    KeyRequest.where(key_request_type: KeyRequest::KeyRequestType::FRIEND_REQUEST, to_user_id: user.id, accepted: false, ignored: [false, nil])
   end
 
 end

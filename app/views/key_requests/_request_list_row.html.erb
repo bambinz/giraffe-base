@@ -5,7 +5,13 @@
 		<% else %>
 		<% friend = User.find(request.to_user_id) %>
 		<% end %>
-		<%= friend.username %>
+
+		<% if @current_user.can_see_users_profile?(friend) %>
+			<%= link_to friend.username, users_show_friend_path(id: @current_user.id, friend_id: friend.id), class: "" %>
+		<% else %>
+			<%= friend.username %>
+		<% end %>
+
 	</div>
 	<div class="small-3 columns">
 		<%= request.created_at.strftime("%d/%m/%Y") %>
@@ -13,7 +19,16 @@
 	<div class="small-3 columns">
 		<% if type == :received %>
 			<%= link_to "Accept Friend Request", key_requests_accept_friend_request_path(id: request.id), remote: true, class: "button tiny request_#{request.id}" %>
+		<% else %>
+			&nbsp;
 		<% end %>
 	</div>
+	<div class="small-3 columns">
+		<% if type == :received %>
+			<%= link_to "Ignore Friend Request", key_requests_ignore_friend_request_path(id: request.id), remote: true, class: "button tiny request_#{request.id}" %>
+		<% elsif type == :sent %>
+		<%= link_to "Revoke Friend Request", key_requests_remove_friend_request_path(id: request.id), remote: true, class: "button tiny request_#{request.id}" %>
+		<% end %>
+	</div>
+	</br></br></br>
 </div>
-</br>

@@ -12,6 +12,8 @@ Grammar::Application.routes.draw do
   get "key_requests/list_friend_requests" => "key_requests#list_friend_requests"
   get "key_requests/send_friend_request" => "key_requests#send_friend_request"
   get "key_requests/accept_friend_request" => "key_requests#accept_friend_request"
+  get "key_requests/ignore_friend_request" => "key_requests#ignore_friend_request"
+  get "key_requests/remove_friend_request" => "key_requests#remove_friend_request"
   
   get "user_friends/remove_friend" => "user_friends#remove_friend"
   

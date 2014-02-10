@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140207074434) do
+ActiveRecord::Schema.define(:version => 20140208044846) do
 
   create_table "key_requests", :force => true do |t|
     t.integer  "user_id"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20140207074434) do
     t.integer  "key_request_type"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.boolean  "ignored"
   end
 
   create_table "notifications", :force => true do |t|
