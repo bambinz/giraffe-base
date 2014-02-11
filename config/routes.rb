@@ -1,6 +1,19 @@
+require 'api_constraints'
+
 Grammar::Application.routes.draw do
 
-  resources :settings
+  namespace :api, defaults: { format: 'json' } do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: :true) do
+      resources :settings
+      resources :user_sessions
+      resources :users
+      resources :notifications do
+        member do
+          get 'mark_as_seen'
+          get 'mark_as_read'
+        end
+    end
+  end
 
 
   root to: "home#index"
@@ -22,7 +35,7 @@ Grammar::Application.routes.draw do
   get "users/search_users_window" => "users#search_users_window"
   get "users/search_users" => "users#search_users"
   
-  
+  resources :settings
   resources :user_sessions
   resources :users
   resources :notifications do

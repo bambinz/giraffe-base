@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
   acts_as_authentic
+  extend FriendlyId
+  friendly_id :username
+  validates_format_of :username, :with => /^[A-Za-zd_]+$/
   attr_accessible :email, :password, :username, :password_confirmation, :first_name, :last_name, :caption, :about_me
   has_many :user_roles
   has_many :roles, through: :user_roles

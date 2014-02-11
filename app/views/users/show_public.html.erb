@@ -1,7 +1,7 @@
 </br>
 <div class="row">
 	<h3>
-		<%= @friend.username.titlecase.possessive + " Profile" %>
+		<%= @user.username.titlecase.possessive + " Profile" %>
 	</h3>
 </div>
 </br>
@@ -11,7 +11,7 @@
 		Joined on:
 	</div>
 	<div class="small-3 columns">
-		<%= @friend.created_at.strftime("%d/%m/%Y") %>
+		<%= @user.created_at.strftime("%d/%m/%Y") %>
 	</div>
 	<div class="small-3 columns">
 	</div>
@@ -23,7 +23,7 @@
 		First name
 	</div>
 	<div class="small-3 columns user_first_name">
-		<%= @friend.first_name %>
+		<%= @user.first_name %>
 	</div>
 	<div class="small-3 columns">
 	</div>
@@ -35,7 +35,7 @@
 		Last name
 	</div>
 	<div class="small-3 columns user_last_name">
-		<%= @friend.last_name %>
+		<%= @user.last_name %>
 	</div>
 	<div class="small-3 columns">
 	</div>
@@ -47,7 +47,7 @@
 		Caption
 	</div>
 	<div class="small-9 columns user_caption">
-		<%= @friend.caption %>
+		<%= @user.caption %>
 	</div>
 </div>
 </br>
@@ -57,6 +57,6 @@
 		About me
 	</div>
 	<div class="small-9 columns user_about_me">
-		<%= @friend.about_me %>
+		<%= @user.about_me %>
 	</div>
 </div>

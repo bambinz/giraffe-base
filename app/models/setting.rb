@@ -4,9 +4,9 @@ class Setting < ActiveRecord::Base
   belongs_to :user
   
   def set_defaults
-    show_in_search = true
-    accept_friend_reqests = true
-    public_profile = true
+    self.show_in_search = true
+    self.accept_friend_reqests = true
+    self.public_profile = true
     self.save
   end
   

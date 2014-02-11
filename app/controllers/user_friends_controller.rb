@@ -6,10 +6,7 @@ class UserFriendsController < ApplicationController
     @user_friend = UserFriend.find(params[:id])
     @user_friend.destroy
 
-    respond_to do |format|
-      format.html { redirect_to user_friends_url }
-      format.json { head :no_content }
-    end
+    redirect_to user_friends_url
   end
   
 end
