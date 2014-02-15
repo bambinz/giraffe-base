@@ -89,6 +89,13 @@ html, body {
 	position: absolute;
 }
 
+.badge_image.large {
+	width: 60px;
+}
+
+.badge_image.small {
+	width: 40px;
+}
 
 
 

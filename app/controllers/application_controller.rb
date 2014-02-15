@@ -3,6 +3,17 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :num_new_notifications, :unseen_notifications
   before_filter { |c| Authorization.current_user = c.current_user }
   
+  def restrict_access
+    authenticate_or_request_with_http_token do |token, options|
+      if token
+        @current_user = User.find_by_api_key(token)
+      else
+        @current_user = nil
+      end
+      @current_user != nil
+    end
+  end
+  
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
     @current_user_session = UserSession.find

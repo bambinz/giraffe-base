@@ -1,0 +1,71 @@
+</br></br>
+
+<div class="row">
+	<div class="small-3 columns">
+		<h3>Bronze Badges</h3>
+	</div>
+	<div class="small-3 columns">
+		<%= image_tag "bronze.png", class: "badge_image large" %>
+	</div>
+	<div class="small-3 columns">
+	</div>
+</div>
+<br>
+
+<% @bronze_badges.each do |badge| %>
+	<%= render 'badges/badge_row', badge: badge, user: @current_user %>
+<% end %>
+
+</br><br>
+
+<div class="row">
+	<div class="small-3 columns">
+		<h3>Silver Badges</h3>
+	</div>
+	<div class="small-3 columns">
+		<%= image_tag "silver.png", class: "badge_image large" %>
+	</div>
+	<div class="small-3 columns">
+	</div>
+</div>
+<br><br>
+
+<% @silver_badges.each do |badge| %>
+	<%= render 'badges/badge_row', badge: badge, user: @current_user %>
+<% end %>
+
+</br><br>
+
+<div class="row">
+	<div class="small-3 columns">
+		<h3>Gold Badges</h3>
+	</div>
+	<div class="small-3 columns">
+		<%= image_tag "gold.png", class: "badge_image large" %>
+	</div>
+	<div class="small-3 columns">
+	</div>
+</div>
+<br><br>
+
+<% @gold_badges.each do |badge| %>
+	<%= render 'badges/badge_row', badge: badge, user: @current_user %>
+<% end %>
+
+</br><br>
+
+<div class="row">
+	<div class="small-3 columns">
+		<h3>Platinum Badges</h3>
+	</div>
+	<div class="small-3 columns">
+		<%= image_tag "platinum.png", class: "badge_image large" %>
+	</div>
+	<div class="small-3 columns">
+	</div>
+</div>
+<br><br>
+
+<% @platinum_badges.each do |badge| %>
+	<%= render 'badges/badge_row', badge: badge, user: @current_user %>
+<% end %>

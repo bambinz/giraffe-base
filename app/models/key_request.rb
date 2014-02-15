@@ -43,22 +43,31 @@ class KeyRequest < ActiveRecord::Base
 
   def accept_friend_request
     if expire_date < Date.current
-      return RequestResult::REQUEST_EXPIRED
+      return { error: RequestResult::REQUEST_EXPIRED }
     end
 
     if accepted
-      return RequestResult::REQUEST_ALREADY_USED
+      return { error: RequestResult::REQUEST_ALREADY_USED }
     end
 
     if UserFriend.add_friend(user_id, to_user_id)
       self.accepted_date = Date.current
       self.accepted = true
       
-      Notification.accepted_friend_request_notification(User.find(user_id), User.find(to_user_id))
+      user_1 = User.find(user_id)
+      user_2 = User.find(to_user_id)
       
-      self.save!
+      Notification.accepted_friend_request_notification(user_1, user_2)
+      
+      Badge.add_friend_badge(user_1)
+      current_users_badge = Badge.add_friend_badge(user_2)
+      
+      if self.save!
+        return { result: true, badge: current_users_badge }
+      end
+      
     else
-      return RequestResult::ERROR
+      return error { RequestResult::ERROR }
     end
   end
 

@@ -4,3 +4,5 @@ $(".friends_list").append("<%= escape_javascript(render(partial: 'user_friends/f
 if (<%=@num_received_requests%> == 0) {
 	$(".received_requests_title").hide(200, "swing")
 }
+
+<%= render 'user_badges/update_badges', badges_earnt: @badges_earnt %>

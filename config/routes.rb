@@ -4,6 +4,7 @@ Grammar::Application.routes.draw do
 
 namespace :api, defaults: { format: 'json' } do
   scope module: :v1, constraints: ApiConstraints.new(version: 1, default: :true) do
+    get "users/get_access_token" => "users#get_access_token"
     resources :settings
     resources :user_sessions
     resources :users
@@ -15,7 +16,6 @@ namespace :api, defaults: { format: 'json' } do
     end
   end
 end
-
 
   root to: "home#index"
 
@@ -35,6 +35,8 @@ end
   get "users/show_friend" => "users#show_friend"
   get "users/search_users_window" => "users#search_users_window"
   get "users/search_users" => "users#search_users"
+  
+  get "dashboard" => "dashboard#show"
 
   resources :settings
   resources :user_sessions
@@ -45,6 +47,7 @@ end
       get 'mark_as_read'
     end
   end
+  resources :badges
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

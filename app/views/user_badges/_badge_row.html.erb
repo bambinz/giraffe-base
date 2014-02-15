@@ -1,0 +1,22 @@
+<div class="row">
+	<div class="small-1 columns">
+		<% if badge.level == Badge::BadgeLevels::BRONZE %>
+			<%= image_tag "bronze.png", class: "badge_image small" %>
+		<% elsif badge.level == Badge::BadgeLevels::SILVER %>
+			<%= image_tag "silver.png", class: "badge_image small" %>
+		<% elsif badge.level == Badge::BadgeLevels::GOLD %>
+			<%= image_tag "gold.png", class: "badge_image small" %>
+		<% elsif badge.level == Badge::BadgeLevels::PLATINUM %>
+			<%= image_tag "platinum.png", class: "badge_image small" %>
+		<% end %>
+	</div>
+	<div class="small-3 columns">
+		<%= badge.name %>
+	</div>
+	<div class="small-3 columns">
+		<%= badge.description %>
+	</div>
+	<div class="small-3 columns">
+	</div>
+</div>
+</br></br>

@@ -15,4 +15,15 @@ class UserFriend < ActiveRecord::Base
     
     user_result && friend_result
   end
+  
+  def self.remove_friend(user_id, friend_id)
+    user_friend = UserFriend.where(user_id: user_id, friend_id: friend_id).first
+    if !user_friend
+      user_friend = serFriend.where(user_id: friend_id, friend_id: user_id).first
+    end
+    
+    if user_friend
+      user_friend.destroy
+    end
+  end
 end

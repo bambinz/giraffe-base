@@ -2,7 +2,7 @@
 	<%= friend.username %>
 </div>
 <div class="row">
-	Joined: <%= friend.created_at %>
+	Joined: <%= friend.created_at.strftime("%d/%m/%Y") %>
 </div>
 <div class="row">
 	<%= friend.caption %>

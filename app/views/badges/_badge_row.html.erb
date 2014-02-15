@@ -1,0 +1,20 @@
+<% has_badge = "" %>
+<% if user.badges.include?(badge) %>
+	<% has_badge = "has_badge" %>
+<% end %>
+
+<div class="row <%=has_badge%>">
+	<div class="small-3 columns">
+		<%= badge.name %>
+	</div>
+	<div class="small-6 columns">
+		<%= badge.description %>
+		<% if has_badge != "" %>
+			&nbsp;
+			<%= image_tag "tick.png", class: "tick_image" %>
+		<% end %>
+	</div>
+	<div class="small-3 columns">
+	</div>
+</div>
+</br>

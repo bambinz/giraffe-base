@@ -1,0 +1,15 @@
+<% if @badges.count == 0 %>
+	<div class="row no_badges">
+		You have no badges :c
+	</div>
+<% end %>
+
+<div class="badge_list">
+<% @badges.each do |badge| %>
+	<%= render 'user_badges/badge_row', badge: badge%>
+<% end %>
+</div>
+
+</br></br>
+
+<%= link_to "View All Badges", badges_path, class: "button tiny secondary" %>

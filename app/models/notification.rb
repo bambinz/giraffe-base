@@ -5,6 +5,7 @@ class Notification < ActiveRecord::Base
   module NotificationTypes
     RECEIVED_FRIEND_REQUEST = 0
     ACCEPT_FRIEND_REQUEST = 1
+    BADGE_AWARDED = 2
   end
 
   module NotificationPriorities
@@ -13,7 +14,7 @@ class Notification < ActiveRecord::Base
     HIGH = 2
   end
 
-  NOTIFICATION_TYPES = { 0 => "Received Friend Request", 1 => "Accepted Fried Request" }
+  NOTIFICATION_TYPES = { 0 => "Received Friend Request", 1 => "Accepted Fried Request", 2 => "Badge Awarded" }
   NOTIFICATION_PRIORITIES = { 0 => "Low", 1 => "Medium", 2 => "High" }
 
   def self.notifications_for_user(current_user)
@@ -80,6 +81,11 @@ class Notification < ActiveRecord::Base
   def self.accepted_friend_request_notification(for_user, from_user)
     content = "#{from_user.username} has accepted your friend request."
     create_notification(for_user.id, content, NotificationTypes::ACCEPT_FRIEND_REQUEST, NotificationPriorities::LOW)
+  end
+  
+  def self.badge_awarded_notification(for_user, badge)
+    content = "You have earnt a #{Badge::BADGE_LEVELS[badge.level]} Badge!\n\n #{badge.name} \n\n #{badge.description}"
+    create_notification(for_user.id, content, NotificationTypes::BADGE_AWARDED, NotificationPriorities::LOW)
   end
 
 

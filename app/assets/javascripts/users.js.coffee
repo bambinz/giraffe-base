@@ -44,6 +44,14 @@ jQuery ->
 		$('.nav_top_title').text("Settings")
 		event.preventDefault()
 		
+	show_my_badges = () ->
+		createCookie("profileTab", "my_badges", 1)
+		hide_focused()
+		$('.my_badges').addClass('has_focus')
+		$('.my_badges').show(200, 'swing')
+		$('.nav_top_title').text("My Badges")
+		event.preventDefault()
+		
 	$('#cancel_button').click (event) ->
 		show_profile()
 		
@@ -53,6 +61,9 @@ jQuery ->
 	$('#nav_my_friends').click (event) ->
 		show_my_friends()
 		
+	$('#nav_my_badges').click (event) ->
+		show_my_badges()
+		
 	$('#nav_settings').click (event) ->
 		show_settings()
 		
@@ -60,6 +71,8 @@ jQuery ->
 		show_profile()
 	else if (readCookie("profileTab") == "myFriends")
 		show_my_friends()
+	else if (readCookie("profileTab") == "my_badges")
+		show_my_badges()
 	else if (readCookie("profileTab") == "settings")
 		show_settings()
 	else

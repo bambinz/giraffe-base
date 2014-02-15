@@ -65,7 +65,41 @@
 	</div>
 </div>
 
-</br></br></br></br></br></br></br></br></br>
+</br></br></br></br>
+
+<div class="row">
+	<div class="small-3 columns">
+		Points
+	</div>
+	<div class="small-9 columns">
+		<%= @user.points %>
+	</div>
+</div>
+</br>
+
+<div class="row">
+	<div class="small-3 columns">
+		Friends
+	</div>
+	<div class="small-9 columns">
+		<%= @user.friends.count %>
+	</div>
+</div>
+</br>
+
+<div class="row">
+	<div class="small-3 columns">
+		Badges
+	</div>
+	<div class="small-1 columns">
+		<%= @user.badges.count %>
+	</div>
+	<div class="small-8 columns">
+		
+	</div>
+</div>
+
+</br></br></br></br></br></br></br>
 
 <div class="row centered">
 	<%= link_to 'Edit Profile', edit_user_path(@user), class: "button", id: "edit_profile_button" %>

@@ -1,5 +1,5 @@
 <% if @request %>
-	$(".send_friend_request_button").text("Sent!")
+	$(".send_friend_request_button_<%=@user_id%>").text("Sent!")
 	$(".sent_requests_title").show(200, "swing")
 	$(".sent_requests_list").append("<%= escape_javascript(render(partial: 'request_list_row', locals: { request: @request, type: :sent, current_user: @current_user }))%>")
 <% end %>

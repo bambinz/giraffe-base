@@ -8,6 +8,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    
+    Leaderboard.public_leaderbaord
 
     if @user != current_user
       if !current_user.can_see_users_profile?(@user)
@@ -18,12 +20,14 @@ class UsersController < ApplicationController
         return true
       end
     else
+      
       @is_remote = true
-      @friends = current_user.friends
+      @friends = current_user.friends.order(:username)
       @user_settings = nil
       @sent_requests = KeyRequest.sent_friend_requests_for_user(current_user)
       @received_requests = KeyRequest.received_friend_requests_for_user(current_user)
       @setting = @user.setting
+      @badges = @user.badges.order(:level)
     end
   end
 
@@ -41,8 +45,12 @@ class UsersController < ApplicationController
     @user.roles << Role.find_by_name(:user)
     @user.build_setting
     @user.setting.set_defaults
-
+    @user.points = 0
+    
     if @user.save
+      
+      Badge.award_badge(@user, Badge::BadgeTypes::SIGN_UP)
+      
       redirect_to root_url, notice: 'Registration successful.'
     else
       render action: "new"
@@ -54,6 +62,12 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
+        
+        if @user.has_complete_profile
+          badge_earnt = Badge.award_badge(@user, Badge::BadgeTypes::COMPLETE_PROFILE)
+        end
+        @badges_earnt = [badge_earnt]
+        
         format.html { redirect_to @user, notice: 'Successfully updated profile.' }
         format.js { render layout: false }
       else

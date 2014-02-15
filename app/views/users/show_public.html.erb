@@ -60,3 +60,16 @@
 		<%= @user.about_me %>
 	</div>
 </div>
+
+</br></br></br></br></br></br>
+
+<% if @current_user.is_friends_with(@user) %>
+	<div class="row">
+		<%= link_to "Unfriend", user_friends_remove_friend_path(friend_id: @user.id), class: "button secondary tiny" %>
+	</div>
+<% end %>
+
+
+
+
+

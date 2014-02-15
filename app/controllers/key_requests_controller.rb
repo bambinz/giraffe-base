@@ -8,13 +8,15 @@ class KeyRequestsController < ApplicationController
 
   def send_friend_request
     @request = KeyRequest.generate_friend_request(current_user, User.find(params[:friend_id]))
+    @user_id = params[:friend_id]
   end
 
   def accept_friend_request
     @key_request = KeyRequest.find(params[:id])
-    @key_request.accept_friend_request
+    result = @key_request.accept_friend_request
     @friend = @key_request.user
     @num_received_requests = KeyRequest.received_friend_requests_for_user(current_user).count
+    @badges_earnt = [result[:badge]]
   end
 
   def ignore_friend_request

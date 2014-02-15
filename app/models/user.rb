@@ -3,13 +3,15 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :username
   validates_format_of :username, :with => /^[A-Za-zd_]+$/
-  attr_accessible :email, :password, :username, :password_confirmation, :first_name, :last_name, :caption, :about_me
+  attr_accessible :email, :password, :username, :password_confirmation, :first_name, :last_name, :caption, :about_me, :points
   has_many :user_roles
   has_many :roles, through: :user_roles
   has_many :key_requests
   has_many :user_friends
   has_many :friends, through: :user_friends, class_name: "User", source: :friend
   has_one :setting
+  has_many :user_badges
+  has_many :badges, through: :user_badges
   
   def role_symbols
     roles.map do |role|
@@ -42,6 +44,14 @@ class User < ActiveRecord::Base
       return false
     end
     return true
+  end
+  
+  def has_complete_profile
+    complete = self.email != nil && self.email != ""
+    complete = complete && self.first_name != nil && self.first_name != ""
+    complete = complete && self.last_name != nil && self.last_name != ""
+    complete = complete && self.caption != nil && self.caption != ""
+    complete = complete && self.about_me != nil && self.about_me != ""
   end
   
 end

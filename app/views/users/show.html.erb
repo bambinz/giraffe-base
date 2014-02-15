@@ -11,6 +11,7 @@
 			<ul class="left-nav-list">
 				<li><%= link_to "My Profile", "#", id: "nav_my_profile" %></li>
 				<li><%= link_to "My Friends", "#", id: "nav_my_friends" %></li>
+				<li><%= link_to "My Badges", "#", id: "nav_my_badges" %></li>
 				<li><%= link_to "Settings", "#", id: "nav_settings" %></li>
 			</ul>
 		</div>
@@ -29,6 +30,10 @@
 		
 		<div class="content my_friends" style="display:none;">
 			<%= render 'user_friends/my_friends' %>
+		</div>
+		
+		<div class="content my_badges" style="display:none;">
+			<%= render 'user_badges/my_badges' %>
 		</div>
 		
 		<div class="content settings" style="display:none;">

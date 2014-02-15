@@ -1,0 +1,6 @@
+<% badges_earnt.each do |badge| %>
+	<% if badge != nil %>
+		$(".no_badges").hide(200, "swing")
+		$(".badge_list").append('<%= escape_javascript(render :partial => 'user_badges/badge_row', locals: { badge: badge }) %>')
+	<% end %>
+<% end %>

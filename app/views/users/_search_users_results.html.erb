@@ -15,7 +15,7 @@
 		<div class="small-6 columns">
 			<% if @current_user.can_send_friend_request_to_user(user) %>
 				<% if !@current_user.has_friend_request_with?(user) %>
-					<%= link_to "Send Friend Request", key_requests_send_friend_request_path(friend_id: user.id), remote: true, class: "button tiny send_friend_request_button" %>
+					<%= link_to "Send Friend Request", key_requests_send_friend_request_path(friend_id: user.id), remote: true, class: "button tiny send_friend_request_button_#{user.id}" %>
 				<% else %>
 					<%= link_to "Sent", "#", disabled: true, class: "button tiny send_friend_request_button" %>
 				<% end %>
