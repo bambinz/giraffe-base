@@ -19,11 +19,20 @@ class UserFriend < ActiveRecord::Base
   def self.remove_friend(user_id, friend_id)
     user_friend = UserFriend.where(user_id: user_id, friend_id: friend_id).first
     if !user_friend
-      user_friend = serFriend.where(user_id: friend_id, friend_id: user_id).first
+      user_friend = UserFriend.where(user_id: friend_id, friend_id: user_id).first
     end
     
     if user_friend
       user_friend.destroy
+    end
+
+    key_request = KeyRequest.where(user_id: user_id, to_user_id: friend_id).first
+    if !key_request
+      key_request = KeyRequest.where(user_id: friend_id, to_user_id: user_id).first
+    end
+    
+    if key_request
+      key_request.destroy
     end
   end
 end
