@@ -8,8 +8,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    
-    Leaderboard.public_leaderbaord
 
     if @user != current_user
       if !current_user.can_see_users_profile?(@user)
