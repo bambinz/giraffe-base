@@ -1,0 +1,10 @@
+<% leaderboad_users.each do |user| %>
+	<div class="row leaderboard_row">
+		<div class="small-6 columns">
+			<%= link_to user.username, user_path(user) %>
+		</div>
+		<div class="small-6 columns">
+			<%= "#{(user.points || 0)} points" %>
+		</div>
+	</div>
+<% end %>

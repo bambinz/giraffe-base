@@ -9,7 +9,7 @@
 		<ul class="right">
 			<% if current_user %>
 			<li class="active">
-				<%= link_to "View profile", user_path(current_user) %>
+				<%= link_to "Me", user_path(current_user) %>
 			</li>
 			<li class="active">
 				<%= link_to "Log out", logout_path %>

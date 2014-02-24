@@ -1,3 +1,17 @@
 // Place all the styles related to the Dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.leaderboard_row {
+	padding: 14px 0px;
+	border-bottom: 1px solid #ccc;
+}
+
+.leaderboard_row:nth-child(odd) {
+	background: #eee;
+}
+
+.leaderboard {
+	padding: 0px 16px;
+	border: 1px solid #ccc;
+}

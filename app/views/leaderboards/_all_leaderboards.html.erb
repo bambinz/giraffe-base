@@ -1,0 +1,26 @@
+<div class="row">
+	<div class="small-12 small-centered columns">
+		<ul class="button-group">
+			<li><%= link_to "All", "#", class: "leaderboard_all_link button tiny" %></li>
+			<li><%= link_to "Friends", "#", class: "leaderboard_friends_link button tiny" %></li>
+			<li><%= link_to "Companions", "#", class: "leaderboard_companions_link button tiny" %></li>
+		</ul>
+	</div>
+</div>
+
+<div class="leaderboard">
+	
+	<div class="row">
+		<div class="small-12 columns leaderboard_all leaderboard_visible">
+			<%= render 'leaderboards/leaderboard_list', leaderboad_users: leaderboard_all_users %>
+		</div>
+		
+		<div class="small-12 columns leaderboard_friends" style="display:none;">
+			<%= render 'leaderboards/leaderboard_list', leaderboad_users: leaderboard_friends_users %>
+		</div>
+		
+		<div class="small-12 columns leaderboard_companions" style="display:none;">
+			<%= render 'leaderboards/leaderboard_list', leaderboad_users: leaderboard_companions_users %>
+		</div>
+	</div>
+</div>
